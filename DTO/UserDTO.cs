@@ -9,6 +9,7 @@ namespace ZYW.DTO
     public class UserDTO:BaseDTO
     {
         public String AccessToken { get; set; }
+        
         public String LoginName { get; set; }
 
         public int LoginErrorTimes { get; set; }

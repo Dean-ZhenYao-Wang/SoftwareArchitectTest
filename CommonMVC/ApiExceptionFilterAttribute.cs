@@ -12,7 +12,7 @@ namespace ZYW.CommonMVC
 {
     public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
     {
-        public IEventExecutionErrorLogService eventExecutionErrorLogService { get; set; }
+        private static IEventExecutionErrorLogService eventExecutionErrorLogService { get; set; }
         public override void OnException(HttpActionExecutedContext actionExecutedContext)
         {
             var path = actionExecutedContext.Request.RequestUri.AbsolutePath;

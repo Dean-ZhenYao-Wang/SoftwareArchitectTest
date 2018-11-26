@@ -11,25 +11,25 @@ namespace ZYW.Services.Service
 {
     public class UserService : IUserService
     {
-        public bool CheckLogin(string loginName, string passWord)
+        public string CheckLogin(string loginName, string passWord)
         {
-            using (MyDbContext db=new MyDbContext())
+            using (MyDbContext db = new MyDbContext())
             {
-                BaseService<UserEntity> service = new BaseService<UserEntity>(db);
+                BaseService<Entities.UserEntity> service = new BaseService<Entities.UserEntity>(db);
                 var user = service.GetAll().SingleOrDefault(m => m.LoginName == loginName && m.PassWord == passWord);
-                if(user==null)
+                if (user == null)
                 {
-                    return false;
+                    return "";
                 }
                 else
                 {
-                    return true;
+                    return user.Id.ToString();
                 }
             }
         }
-        public UserDTO ToDTO(UserEntity user)
+        private UserDTO ToDTO(Entities.UserEntity user)
         {
-            UserDTO dto = new UserDTO();
+            DTO.UserDTO dto = new DTO.UserDTO();
             dto.AccessToken = user.AccessToken;
             dto.Id = user.Id;
             dto.LoginName = user.LoginName;
@@ -37,23 +37,14 @@ namespace ZYW.Services.Service
             dto.LastLoginErrorDateTime = user.LastLoginErrorDateTime;
             return dto;
         }
-        public UserDTO GetById(Guid id)
-        {
-            using (MyDbContext db = new MyDbContext())
-            {
-                BaseService<UserEntity> bs = new BaseService<UserEntity>(db);
-                var user = bs.GetById(id);
-                return user == null ? null : ToDTO(user);
-            }
-        }
 
         public void IncrLoginError(Guid id)
         {
-            using (MyDbContext db=new MyDbContext())
+            using (MyDbContext db = new MyDbContext())
             {
-                BaseService<UserEntity> baseService = new BaseService<UserEntity>(db);
+                BaseService<Entities.UserEntity> baseService = new BaseService<Entities.UserEntity>(db);
                 var user = baseService.GetById(id);
-                if(user==null)
+                if (user == null)
                 {
                     throw new ArgumentException("user does not exist " + id);
                 }
@@ -62,12 +53,39 @@ namespace ZYW.Services.Service
                 db.SaveChanges();
             }
         }
-
+        private UserEntity GetById(Guid id)
+        {
+            UserEntity user = null;
+            using (MyDbContext db = new MyDbContext())
+            {
+                user = db.Users.Where(m => m.Id == id).SingleOrDefault();
+            }
+            return user;
+        }
         public bool IsLocked(Guid id)
         {
             var user = GetById(id);
             //Error logon times >= 5, last logon error time within 30 minutes
             return (user.LoginErrorTimes >= 5 && user.LastLoginErrorDateTime > DateTime.Now.AddMinutes(30));
+        }
+
+        public UserDTO GetByToken(string token)
+        {
+            using (MyDbContext db = new MyDbContext())
+            {
+                BaseService<Entities.UserEntity> bs = new BaseService<Entities.UserEntity>(db);
+                var user = bs.GetAll().Where(m => m.AccessToken == token).SingleOrDefault();
+                return user == null ? null : ToDTO(user);
+            }
+        }
+        public UserDTO GetByDbId(Guid userId)
+        {
+            using (MyDbContext db = new MyDbContext())
+            {
+                BaseService<Entities.UserEntity> bs = new BaseService<Entities.UserEntity>(db);
+                var user = bs.GetAll().Where(m => m.Id == userId).SingleOrDefault();
+                return user == null ? null : ToDTO(user);
+            }
         }
     }
 }
