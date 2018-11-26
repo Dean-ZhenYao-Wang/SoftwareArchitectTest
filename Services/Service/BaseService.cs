@@ -33,5 +33,14 @@ namespace ZYW.Services.Service
         {
             return GetAll().LongCount();
         }
+        /// <summary>
+        /// Find the data with id = ID and return null if not found
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public T GetById(Guid id)
+        {
+            return GetAll().Where(m => m.Id == id).SingleOrDefault();
+        }
     }
 }

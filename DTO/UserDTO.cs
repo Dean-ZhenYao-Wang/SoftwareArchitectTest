@@ -10,6 +10,10 @@ namespace ZYW.DTO
     {
         public String AccessToken { get; set; }
         public String LoginName { get; set; }
+
+        public int LoginErrorTimes { get; set; }
+
+        public DateTime LastLoginErrorDateTime { get; set; }
     }
 
     public class LoginUserDTO

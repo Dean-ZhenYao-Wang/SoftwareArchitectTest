@@ -27,6 +27,6 @@ namespace ZYW.IServices
         /// </summary>
         /// <param name="id">userId</param>
         /// <returns></returns>
-        bool IsLocked(long id);
+        bool IsLocked(Guid id);
     }
 }
