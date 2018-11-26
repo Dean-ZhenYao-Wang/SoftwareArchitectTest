@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZYW.IServices
 {
-    public interface ICreditCardService
+    public interface ICreditCardService: IServiceSupport
     {
         bool ValidationCreditCard(string cardNumber, DateTime expiryDate);
     }

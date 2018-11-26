@@ -31,5 +31,7 @@ namespace ZYW.Services
 
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<CreditCardEntity> CreditCards { get; set; }
+
+        public DbSet<EventExecutionErrorLogEntity> errorLogEntities { get; set; }
     }
 }
