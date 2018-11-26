@@ -10,9 +10,17 @@ using ZYW.IServices;
 
 namespace ZYW.Web.Controllers
 {
+    /// <summary>
+    /// XINYONGKA
+    /// </summary>
     public class CreditCardController : BaseController
     {
         private static ICreditCardService creditCardService { get; set; }
+        /// <summary>
+        /// VALIDATION
+        /// </summary>
+        /// <param name="creditCardDTO"></param>
+        /// <returns></returns>
         [HttpPost]
         public IHttpActionResult ValidationCreditCard(CreditCardDTO creditCardDTO)
         {

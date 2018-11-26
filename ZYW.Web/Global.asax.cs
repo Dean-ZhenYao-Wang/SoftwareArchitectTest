@@ -27,7 +27,7 @@ namespace ZYW.Web
             builder.RegisterControllers(typeof(WebApiApplication).Assembly)
                 .PropertiesAutowired();//Register Controllers in the current assembly                                                                                              //不要忘了.PropertiesAutowired()
                                        // Get assemblies of all related class libraries
-            Assembly[] assemblies = new Assembly[] { Assembly.Load("WZY.Services") };
+            Assembly[] assemblies = new Assembly[] { Assembly.Load("ZYW.Services") };
             builder.RegisterAssemblyTypes(assemblies)
             .Where(type => !type.IsAbstract
                     && typeof(IServiceSupport).IsAssignableFrom(type))
