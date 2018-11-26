@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public class Class1
+    [Serializable]
+    public abstract class BaseDTO
     {
+        public Guid Id { get; set; }
+        public DateTime CreateDateTime { get; set; }
     }
 }
