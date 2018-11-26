@@ -13,7 +13,7 @@ namespace ZYW.DTO
 
         public int LoginErrorTimes { get; set; }
 
-        public DateTime LastLoginErrorDateTime { get; set; }
+        public DateTime? LastLoginErrorDateTime { get; set; }
     }
 
     public class LoginUserDTO
