@@ -161,7 +161,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\MvcAuthorizeAttribute.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -222,6 +223,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -251,6 +253,24 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonMVC\ZYW.CommonMVC.csproj">
+      <Project>{91f8ce90-08f8-4998-8ae0-6ddca27b47b8}</Project>
+      <Name>ZYW.CommonMVC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO\ZYW.DTO.csproj">
+      <Project>{a2106a1b-04c7-4c8e-88b0-319cd602ef53}</Project>
+      <Name>ZYW.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IServices\ZYW.IServices.csproj">
+      <Project>{ff0f650e-ec98-49ba-a5bc-7913c3887b84}</Project>
+      <Name>ZYW.IServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\ZYW.Services.csproj">
+      <Project>{4de2f230-4fd5-423e-aecb-081004a798e4}</Project>
+      <Name>ZYW.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

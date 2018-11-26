@@ -15,7 +15,6 @@ namespace ZYW.Services.Service
             EventExecutionErrorLogEntity log = new EventExecutionErrorLogEntity();
             log.LogID = Guid.NewGuid();
             log.OccurrenceTime = DateTime.Now;
-            log.BusinessModule = businessModule;
             log.FunctionName = functionName;
             log.ErrorDescription = errorDescription;
             using (MyDbContext db=new MyDbContext())
