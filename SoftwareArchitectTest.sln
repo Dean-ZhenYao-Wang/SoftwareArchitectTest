@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTO", "DTO\DTO.csproj", "{A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonMVC", "CommonMVC\CommonMVC.csproj", "{91F8CE90-08F8-4998-8AE0-6DDCA27B47B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IServices", "IServices\IServices.csproj", "{FF0F650E-EC98-49BA-A5BC-7913C3887B84}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{91F8CE90-08F8-4998-8AE0-6DDCA27B47B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91F8CE90-08F8-4998-8AE0-6DDCA27B47B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91F8CE90-08F8-4998-8AE0-6DDCA27B47B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF0F650E-EC98-49BA-A5BC-7913C3887B84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF0F650E-EC98-49BA-A5BC-7913C3887B84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF0F650E-EC98-49BA-A5BC-7913C3887B84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF0F650E-EC98-49BA-A5BC-7913C3887B84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
