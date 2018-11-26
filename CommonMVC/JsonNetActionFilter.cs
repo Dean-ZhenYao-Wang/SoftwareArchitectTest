@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace CommonMVC
+namespace ZYW.CommonMVC
 {
     public class JsonNetActionFilter:IActionFilter
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommonMVC
+namespace ZYW.CommonMVC
 {
     /// <summary>
     /// All Ajax returns objects of this type

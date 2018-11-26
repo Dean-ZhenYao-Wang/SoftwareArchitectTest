@@ -7,8 +7,8 @@
     <ProjectGuid>{91F8CE90-08F8-4998-8AE0-6DDCA27B47B8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CommonMVC</RootNamespace>
-    <AssemblyName>CommonMVC</AssemblyName>
+    <RootNamespace>ZYW.CommonMVC</RootNamespace>
+    <AssemblyName>ZYW.CommonMVC</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

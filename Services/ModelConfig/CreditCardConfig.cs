@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.ModelConfig
+namespace ZYW.Services.ModelConfig
 {
     public class CreditCardConfig:EntityTypeConfiguration<CreditCardEntity>
     {

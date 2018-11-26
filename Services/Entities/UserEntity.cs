@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Entities
+namespace ZYW.Services.Entities
 {
     public class UserEntity:BaseEntity
     {

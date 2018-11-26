@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IServices
+namespace ZYW.IServices
 {
     /// <summary>
     /// An identification interface, which must be implemented by all services

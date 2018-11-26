@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-namespace CommonMVC
+namespace ZYW.CommonMVC
 {
     public class JsonNetResult:JsonResult
     {
