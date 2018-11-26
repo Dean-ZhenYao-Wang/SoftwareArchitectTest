@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
+using ZYW.Services.Entities;
+
 namespace ZYW.Services
 {
     public class MyDbContext:DbContext
@@ -26,5 +28,8 @@ namespace ZYW.Services
             base.OnModelCreating(modelBuilder);
             modelBuilder.Configurations.AddFromAssembly(Assembly.GetExecutingAssembly());
         }
+
+        public DbSet<UserEntity> Users { get; set; }
+        public DbSet<CreditCardEntity> CreditCards { get; set; }
     }
 }
