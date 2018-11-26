@@ -10,7 +10,7 @@ namespace ZYW.DTO
     {
         public string CardNumber { get; set; }
 
-        public DateTime ExpiryDate { get; set; }
+        public string ExpiryDate { get; set; }
     }
 
     public class ValidationCreditCardDTO

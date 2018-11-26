@@ -10,7 +10,11 @@ namespace ZYW.CommonMVC
     /// All Ajax returns objects of this type
     /// </summary>
     public class AjaxResult
-    { 
+    {
+        /// <summary>
+        /// 000000:normal
+        /// 999999:error
+        /// </summary>
         public string Status { get; set; }
         
         public string ErrorMsg { get; set; }

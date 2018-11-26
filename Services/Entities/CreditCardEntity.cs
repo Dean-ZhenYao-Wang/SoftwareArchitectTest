@@ -12,6 +12,6 @@ namespace ZYW.Services.Entities
 
        public string CardType { get; set; }
 
-       public DateTime ExpiryDate { get; set; }
+       public string ExpiryDate { get; set; }
     }
 }

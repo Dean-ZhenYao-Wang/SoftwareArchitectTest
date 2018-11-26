@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
+using System.Web.Http.Controllers;
+using System.Web.Http.Cors;
 using System.Web.Mvc;
 using System.Web.Routing;
 using ZYW.CommonMVC;
@@ -9,27 +12,21 @@ using ZYW.DTO;
 
 namespace ZYW.Web.Controllers
 {
-    [MvcAuthorize]
-    public class BaseController : Controller
+    [EnableCors("*", "*", "*")]
+    [ApiExceptionFilter]
+    [ApiAuthorize]
+    public class BaseController : ApiController
     {
         public UserDTO Identity { get; private set; }
 
-        protected override void Initialize(RequestContext requestContext)
+        protected override void Initialize(HttpControllerContext controllerContext)
         {
-            base.Initialize(requestContext);
+            base.Initialize(controllerContext);
 
-            var token = requestContext.HttpContext.Request.QueryString["_token"];
-
-            var cookie = requestContext.HttpContext.Request.Cookies["AccessToken"];
-            if (cookie != null)
+            if (controllerContext.Request.Headers.Authorization != null)
             {
-                token = cookie.Value;
-            }
-
-            if (!string.IsNullOrEmpty(token))
-            {
-                Identity = IdentityManager.GetByToken(token);
-                ViewBag.Identity = Identity;
+                var token = controllerContext.Request.Headers.Authorization.Parameter;
+                this.Identity = IdentityManager.GetByToken(token);
             }
         }
     }
