@@ -2,6 +2,13 @@ using System.Web.Http;
 using WebActivatorEx;
 using ZYW.Web;
 using Swashbuckle.Application;
+using ZYW.Web.Controllers;
+using Swashbuckle.Swagger;
+using System.Collections.Generic;
+using System.Web.UI.WebControls;
+using System.Web.Http.Description;
+using System.Linq;
+using System.Web.Http.Filters;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
@@ -103,7 +110,8 @@ namespace ZYW.Web
                         //
                         //c.IncludeXmlComments(GetXmlCommentsPath());
                         c.IncludeXmlComments(string.Format("{0}/bin/ZYW.Web.xml", System.AppDomain.CurrentDomain.BaseDirectory));
-
+                        c.OperationFilter<HttpAuthHeaderFilter>();//自定义 HTTP Header （oauth2.0 请求）
+                        c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
                         // Swashbuckle makes a best attempt at generating Swagger compliant JSON schemas for the various types
                         // exposed in your API. However, there may be occasions when more control of the output is needed.
                         // This is supported through the "MapType" and "SchemaFilter" options:
@@ -237,13 +245,13 @@ namespace ZYW.Web
 
                         // If your API supports the OAuth2 Implicit flow, and you've described it correctly, according to
                         // the Swagger 2.0 specification, you can enable UI support as shown below.
-                        //
+                        ////
                         //c.EnableOAuth2Support(
                         //    clientId: "test-client-id",
                         //    clientSecret: null,
                         //    realm: "test-realm",
                         //    appName: "Swagger UI"
-                        //    //additionalQueryStringParams: new Dictionary<string, string>() { { "foo", "bar" } }
+                        ////additionalQueryStringParams: new Dictionary<string, string>() { { "foo", "bar" } }
                         //);
 
                         // If your API supports ApiKey, you can override the default values.
@@ -251,6 +259,31 @@ namespace ZYW.Web
                         //
                         //c.EnableApiKeySupport("apiKey", "header");
                     });
+        }
+    }
+    /// <summary>
+    /// swagger 增加 AUTH 选项
+    /// </summary>
+    public class HttpAuthHeaderFilter : IOperationFilter
+    {
+        /// <summary>
+        /// 应用
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <param name="schemaRegistry"></param>
+        /// <param name="apiDescription"></param>
+        public void Apply(Operation operation, SchemaRegistry schemaRegistry, ApiDescription apiDescription)
+
+        {
+            if (operation.parameters == null)
+                operation.parameters = new List<Swashbuckle.Swagger.Parameter>();
+            var filterPipeline = apiDescription.ActionDescriptor.GetFilterPipeline(); //判断是否添加权限过滤器
+            var isAuthorized = filterPipeline.Select(filterInfo => filterInfo.Instance).Any(filter => filter is IAuthorizationFilter); //判断是否允许匿名方法 
+            var allowAnonymous = apiDescription.ActionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>().Any();
+            if (isAuthorized && !allowAnonymous)
+            {
+                operation.parameters.Add(new Swashbuckle.Swagger.Parameter { name = "Authorization", @in = "header", description = "安全", required = false, type = "string" });
+            }
         }
     }
 }
