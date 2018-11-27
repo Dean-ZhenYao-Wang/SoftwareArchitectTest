@@ -5,10 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http.Filters;
 using ZYW.IServices;
-using ZYW.Services;
-using ZYW.Services.Entities;
 
-namespace ZYW.CommonMVC
+namespace ZYW.Web.Controllers
 {
     public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
     {

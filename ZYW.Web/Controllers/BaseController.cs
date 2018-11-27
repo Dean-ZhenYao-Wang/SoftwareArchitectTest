@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using ZYW.CommonMVC;
 using ZYW.DTO;
+using ZYW.IServices;
 
 namespace ZYW.Web.Controllers
 {
@@ -17,6 +18,7 @@ namespace ZYW.Web.Controllers
     [ApiAuthorize]
     public class BaseController : ApiController
     {
+        public IUserService userService { get; set; }
         public UserDTO Identity { get; private set; }
 
         protected override void Initialize(HttpControllerContext controllerContext)
@@ -26,7 +28,7 @@ namespace ZYW.Web.Controllers
             if (controllerContext.Request.Headers.Authorization != null)
             {
                 var token = controllerContext.Request.Headers.Authorization.Parameter;
-                this.Identity = IdentityManager.GetByToken(token);
+                this.Identity = userService.GetByToken(token);
             }
         }
     }

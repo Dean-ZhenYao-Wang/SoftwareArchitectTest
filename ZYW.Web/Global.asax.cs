@@ -1,11 +1,13 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using Autofac.Integration.WebApi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Controllers;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -24,14 +26,16 @@ namespace ZYW.Web
             ModelBinders.Binders.Add(typeof(double), new TrimToDBCModelBinder());
 
             var builder = new ContainerBuilder();
-            builder.RegisterControllers(typeof(WebApiApplication).Assembly)
+            builder.RegisterApiControllers(typeof(WebApiApplication).Assembly)
                 .PropertiesAutowired();//Register Controllers in the current assembly                                                                                              //不要忘了.PropertiesAutowired()
                                        // Get assemblies of all related class libraries
+            builder.RegisterWebApiFilterProvider(GlobalConfiguration.Configuration);
             Assembly[] assemblies = new Assembly[] { Assembly.Load("ZYW.Services") };
             builder.RegisterAssemblyTypes(assemblies)
             .Where(type => !type.IsAbstract
                     && typeof(IServiceSupport).IsAssignableFrom(type))
                     .AsImplementedInterfaces().PropertiesAutowired();
+            builder.RegisterWebApiModelBinderProvider();
             //Assign:
             //type1.IsAssignableFrom(type2);
             //In other words, does type2 implement the type1 interface / type2 inherit from type1?
@@ -39,7 +43,8 @@ namespace ZYW.Web
             //Avoid registering other unrelated classes in AutoFac
             var container = builder.Build();
             //Register system-level Dependency Resolver so that when the MVC framework creates objects such as Controller, it manages Autofac objects.
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));//!!!
+            GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);//ApiController　WebApi注入 
+
 
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);

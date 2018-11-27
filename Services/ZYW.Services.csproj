@@ -70,6 +70,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommonMVC\ZYW.CommonMVC.csproj">
+      <Project>{91F8CE90-08F8-4998-8AE0-6DDCA27B47B8}</Project>
+      <Name>ZYW.CommonMVC</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DTO\ZYW.DTO.csproj">
       <Project>{a2106a1b-04c7-4c8e-88b0-319cd602ef53}</Project>
       <Name>ZYW.DTO</Name>

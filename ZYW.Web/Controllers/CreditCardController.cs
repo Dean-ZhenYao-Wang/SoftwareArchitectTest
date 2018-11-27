@@ -15,7 +15,7 @@ namespace ZYW.Web.Controllers
     /// </summary>
     public class CreditCardController : BaseController
     {
-        private static ICreditCardService creditCardService { get; set; }
+        private ICreditCardService creditCardService { get; set; }
         /// <summary>
         /// VALIDATION
         /// </summary>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZYW.DTO
 {
-    public class CreditCardDTO:BaseDTO
+    public class CreditCardDTO
     {
         public string CardNumber { get; set; }
 

@@ -8,11 +8,13 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using ZYW.CommonMVC;
 using ZYW.DTO;
+using ZYW.IServices;
 
 namespace ZYW.Web.Controllers
 {
     public class ApiAuthorizeAttribute : AuthorizeAttribute
     {
+        public IUserService userService { get; set; }
         public override void OnAuthorization(HttpActionContext actionContext)
         {
             var attr = actionContext.ActionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>();
@@ -25,7 +27,7 @@ namespace ZYW.Web.Controllers
                 if (actionContext.Request.Headers.Authorization != null)
                 {
                     var token = actionContext.Request.Headers.Authorization.Parameter;
-                    identity = IdentityManager.GetByToken(token);
+                    identity = userService.GetByToken(token);
                 }
 
                 if (identity == null)

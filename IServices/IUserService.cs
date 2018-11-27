@@ -30,6 +30,9 @@ namespace ZYW.IServices
 
         UserDTO GetByToken(string token);
 
-        UserDTO GetByDbId(Guid userId);
+        UserDTO GetByDbId(Guid userId,bool updateToken);
+
+        UserDTO Login(string loginName, string passWord);
+        UserDTO GetByDbToken(string token, bool updateToken);
     }
 }

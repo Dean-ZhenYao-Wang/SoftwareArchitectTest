@@ -81,9 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AjaxResult.cs" />
-    <Compile Include="ApiExceptionFilterAttribute.cs" />
     <Compile Include="CacheManager.cs" />
-    <Compile Include="IdentityManager.cs" />
     <Compile Include="JsonNetActionFilter.cs" />
     <Compile Include="JsonNetResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,20 +90,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DTO\ZYW.DTO.csproj">
-      <Project>{a2106a1b-04c7-4c8e-88b0-319cd602ef53}</Project>
-      <Name>ZYW.DTO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IServices\ZYW.IServices.csproj">
-      <Project>{ff0f650e-ec98-49ba-a5bc-7913c3887b84}</Project>
-      <Name>ZYW.IServices</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Services\ZYW.Services.csproj">
-      <Project>{4de2f230-4fd5-423e-aecb-081004a798e4}</Project>
-      <Name>ZYW.Services</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
