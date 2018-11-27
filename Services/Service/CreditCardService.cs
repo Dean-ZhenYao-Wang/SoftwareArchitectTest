@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
@@ -43,7 +44,7 @@ namespace ZYW.Services.Service
                 }
                 //4.jcb is a card number starting wiht 3528-2589.
                 //9.every jcb card is valid.
-                else if (creditCardDTO.CardNumber.StartsWith("3528-2589"))
+                else if (creditCardDTO.CardNumber.StartsWith("35282589"))
                 {
                     type = "jcb";
                     return true;
@@ -113,20 +114,18 @@ namespace ZYW.Services.Service
                 using (MyDbContext db = new MyDbContext())
                 {
                     SqlParameter cardnumber = new SqlParameter("@cardnumber", creditCardDTO.CardNumber);
-                    DateTime dateTime = Convert.ToDateTime(
-                        Convert.ToInt32(creditCardDTO.ExpiryDate.Substring(2, 4))
-                        + "-"
-                        + Convert.ToInt32(creditCardDTO.ExpiryDate.Substring(0, 2)));
-                    SqlParameter expiryDate = new SqlParameter("@expiryDate", dateTime);
-                    var validationResult = db.Database.SqlQuery<string>("exec ValidationCreditCard @cardnumber,@expiryDate", cardnumber, expiryDate).FirstOrDefault();
+                    SqlParameter expiryDate = new SqlParameter("@expiryDate", creditCardDTO.ExpiryDate);
+                    SqlParameter result = new SqlParameter("@ValidationResult", SqlDbType.NVarChar,20);
+                    result.Direction = ParameterDirection.Output;
+                    db.Database.SqlQuery<string>("exec ValidationCreditCard @cardnumber,@expiryDate,@ValidationResult out", cardnumber, expiryDate, result).FirstOrDefault();
 
-                    if (string.IsNullOrEmpty(validationResult))
+                    if (string.IsNullOrEmpty(result.Value.ToString()))
                     {
                         validationCreditCardDTO.ValidationResult = "valid";
                     }
                     else
                     {
-                        validationCreditCardDTO.ValidationResult = validationResult;
+                        validationCreditCardDTO.ValidationResult = result.Value.ToString();
                     }
                 }
             }
