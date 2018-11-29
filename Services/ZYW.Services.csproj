@@ -65,10 +65,14 @@
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\CreditCardEntity.cs" />
     <Compile Include="Entities\EventExecutionErrorLogEntity.cs" />
+    <Compile Include="Entities\FaceAngelEntity.cs" />
     <Compile Include="Entities\FaceEntity.cs" />
+    <Compile Include="Entities\FaceLocationEntity.cs" />
+    <Compile Include="Entities\FaceTypeProbabilityEntity.cs" />
     <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="ModelConfig\CreditCardConfig.cs" />
     <Compile Include="ModelConfig\EventExecutionErrorLogConfig.cs" />
+    <Compile Include="ModelConfig\FaceConfig.cs" />
     <Compile Include="ModelConfig\UserConfig.cs" />
     <Compile Include="MyDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
