@@ -65,7 +65,6 @@
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\CreditCardEntity.cs" />
     <Compile Include="Entities\EventExecutionErrorLogEntity.cs" />
-    <Compile Include="Entities\FaceEnity.cs" />
     <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="ModelConfig\CreditCardConfig.cs" />
     <Compile Include="ModelConfig\EventExecutionErrorLogConfig.cs" />

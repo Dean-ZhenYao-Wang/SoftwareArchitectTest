@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZYW.Services.Entities
+namespace ZYW.DTO
 {
     /// <summary>
     /// 人脸检测返回数据
@@ -18,12 +18,12 @@ namespace ZYW.Services.Entities
         /// <summary>
         /// 人脸信息列表
         /// </summary>
-        public List<Face> face_list { get; set; }
+        public List<FaceDTO> face_list { get; set; }
     }
     /// <summary>
     /// 人脸信息
     /// </summary>
-    public class Face
+    public class FaceDTO
     {
         /// <summary>
         /// 人脸图片的唯一标识
@@ -40,7 +40,7 @@ namespace ZYW.Services.Entities
         /// <summary>
         /// 人脸旋转角度参数
         /// </summary>
-        public FaceAngel angel { get; set; }
+        public FaceAngelDTO angel { get; set; }
         /// <summary>
         /// 年龄 ，当face_field包含age时返回
         /// </summary>
@@ -52,27 +52,27 @@ namespace ZYW.Services.Entities
         /// <summary>
         /// 表情，当 face_field包含expression时返回
         /// </summary>
-        public FaceExpression expression { get; set; }
+        public FaceExpressionDTO expression { get; set; }
         /// <summary>
         /// 脸型，当face_field包含faceshape时返回
         /// </summary>
-        public FaceShape face_shape { get; set; }
+        public FaceShapeDTO face_shape { get; set; }
         /// <summary>
         /// 性别，face_field包含gender时返回
         /// </summary>
-        public FaceGender gender { get; set; }
+        public FaceGenderDTO gender { get; set; }
         /// <summary>
         /// 是否带眼镜，face_field包含glasses时返回
         /// </summary>
-        public FaceGlasses glasses { get; set; }
+        public FaceGlassesDTO glasses { get; set; }
         /// <summary>
         /// 人种 face_field包含race时返回
         /// </summary>
-        public FaceRace race { get; set; }
+        public FaceRaceDTO race { get; set; }
         /// <summary>
         /// 真实人脸/卡通人脸 face_field包含face_type时返回
         /// </summary>
-        public FaceType face_type { get; set; }
+        public FaceTypeDTO face_type { get; set; }
         /// <summary>
         /// 4个关键点位置，左眼中心、右眼中心、鼻尖、嘴中心。face_field包含landmark时返回
         /// </summary>
@@ -84,7 +84,7 @@ namespace ZYW.Services.Entities
         public string landmark72 { get; set; }
     }
 
-    public class FaceType
+    public class FaceTypeDTO
     {
         /// <summary>
         /// human: 真实人脸 cartoon: 卡通人脸
@@ -95,7 +95,7 @@ namespace ZYW.Services.Entities
         /// </summary>
         public double probability { get; set; }
     }
-    public class FaceRace
+    public class FaceRaceDTO
     {
         /// <summary>
         /// yellow: 黄种人 white: 白种人 black:黑种人 arabs: 阿拉伯人
@@ -109,7 +109,7 @@ namespace ZYW.Services.Entities
     /// <summary>
     /// 是否带眼镜，face_field包含glasses时返回
     /// </summary>
-    public class FaceGlasses
+    public class FaceGlassesDTO
     {
         /// <summary>
         /// none:无眼镜，common:普通眼镜，sun:墨镜
@@ -123,7 +123,7 @@ namespace ZYW.Services.Entities
     /// <summary>
     /// 性别，face_field包含gender时返回
     /// </summary>
-    public class FaceGender
+    public class FaceGenderDTO
     {
         /// <summary>
         /// male:男性 female:女性
@@ -138,7 +138,7 @@ namespace ZYW.Services.Entities
     /// <summary>
     /// 脸型，当face_field包含faceshape时返回
     /// </summary>
-    public class FaceShape
+    public class FaceShapeDTO
     {
         /// <summary>
         /// square: 正方形 triangle:三角形 oval: 椭圆 heart: 心形 round: 圆形
@@ -152,7 +152,7 @@ namespace ZYW.Services.Entities
     /// <summary>
     /// 表情，当 face_field包含expression时返回
     /// </summary>
-    public class FaceExpression
+    public class FaceExpressionDTO
     {
         /// <summary>
         /// none:不笑；smile:微笑；laugh:大笑
@@ -166,7 +166,7 @@ namespace ZYW.Services.Entities
     /// <summary>
     /// 人脸旋转角度参数
     /// </summary>
-    public class FaceAngel
+    public class FaceAngelDTO
     {
         /// <summary>
         /// 三维旋转之左右旋转角[-90(左), 90(右)]
