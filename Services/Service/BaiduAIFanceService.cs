@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using ZYW.CommonMVC;
 using ZYW.IServices;
 
 namespace ZYW.Services.Service
 {
     public class BaiduAIFanceService : IBaiduAIFanceService
     {
+        public IAliOssService aliOssService { get; set; }
         /// <summary>
         /// 人脸检测 
         /// </summary>
@@ -30,9 +33,29 @@ namespace ZYW.Services.Service
         /// CERT表示证件照片：如拍摄的身份证、工卡、护照、学生证等证件图片 
         /// 默认LIVE</param>
         /// <returns>图片访问地址</returns>
-        public string Detect(string image, string imagetype, string face_field = "", string max_face_num = "1", string face_type = "")
+        public async Task<string> Detect(string image, string imagetype, string face_field = "beauty", int max_face_num = 1, string face_type = "")
         {
-            throw new NotImplementedException();
+            string[] imageArray = image.Split(';');// "data:image/jpeg;base64,/9j/";
+            //文件类型
+            string fileName = Guid.NewGuid().ToString() + "." + imageArray[0].Split('/')[1];
+            //文件的base64编码
+            string base64Image = imageArray[1].Split(',')[1];
+            MemoryStream memoryStream = FileHelper.BytesToMemoryStream(FileHelper.Base64ToBytes(base64Image));
+            //异步上传到阿里云oss
+            await aliOssService.PutObjectResultAsync(fileName, memoryStream);
+            var options = new Dictionary<string, object>
+            {
+                {"face_field",face_field }
+            };
+            if (max_face_num != 1)
+                options.Add("max_face_num", max_face_num);
+            if (!string.IsNullOrEmpty(face_type))
+                options.Add("face_type", face_type);
+            //上传至百度人脸检测AI
+            var result = BaiduAIClient.GetBaiduFaceClient.Detect(base64Image, imagetype, options);
+
+            string imageUrl = AliOssClient.endpoint + "/" + fileName;
+            return imageUrl;
         }
     }
 }

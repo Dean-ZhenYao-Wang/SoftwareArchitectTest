@@ -29,6 +29,6 @@ namespace ZYW.IServices
         /// CERT表示证件照片：如拍摄的身份证、工卡、护照、学生证等证件图片 
         /// 默认LIVE</param>
         /// <returns>图片访问地址</returns>
-        string Detect(string image, string imagetype, string face_field="",string max_face_num="1",string face_type="");
+        Task<string> Detect(string image, string imagetype, string face_field = "beauty", int max_face_num = 1, string face_type = "");
     }
 }
