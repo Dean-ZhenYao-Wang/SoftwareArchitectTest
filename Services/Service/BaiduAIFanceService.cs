@@ -4,8 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ZYW.CommonMVC;
+using ZYW.DTO;
 using ZYW.IServices;
 
 namespace ZYW.Services.Service
@@ -40,9 +42,9 @@ namespace ZYW.Services.Service
             string fileName = Guid.NewGuid().ToString() + "." + imageArray[0].Split('/')[1];
             //文件的base64编码
             string base64Image = imageArray[1].Split(',')[1];
-            MemoryStream memoryStream = FileHelper.BytesToMemoryStream(FileHelper.Base64ToBytes(base64Image));
+            //MemoryStream memoryStream = FileHelper.BytesToMemoryStream(FileHelper.Base64ToBytes(base64Image));
             //异步上传到阿里云oss
-            await aliOssService.PutObjectResultAsync(fileName, memoryStream);
+            //await aliOssService.PutObjectResultAsync(fileName, memoryStream);
             var options = new Dictionary<string, object>
             {
                 {"face_field",face_field }
@@ -53,7 +55,10 @@ namespace ZYW.Services.Service
                 options.Add("face_type", face_type);
             //上传至百度人脸检测AI
             var result = BaiduAIClient.GetBaiduFaceClient.Detect(base64Image, imagetype, options);
-
+            if (result.First.First.ToString().Equals("0"))
+            {
+                ResultFaceDTO resultFaceDTO = result.Last.Last.ToObject<ResultFaceDTO>();
+            }
             string imageUrl = AliOssClient.endpoint + "/" + fileName;
             return imageUrl;
         }

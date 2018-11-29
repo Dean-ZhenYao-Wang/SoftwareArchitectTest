@@ -38,7 +38,7 @@ namespace ZYW.Web.Controllers
         [AllowAnonymous]
         public IHttpActionResult Detect([FromBody]string image)
         {
-            string imageUrl = baiduAIFanceService.Detect(image, "BASE64").Result;
+            string imageUrl = baiduAIFanceService.Detect(image, "BASE64","age,beauty,faceshape,gender,glasses,race,face_type,landmark").Result;
             return Json(imageUrl);
         }
     }

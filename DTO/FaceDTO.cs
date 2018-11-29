@@ -62,10 +62,6 @@ namespace ZYW.DTO
         /// </summary>
         public FaceGenderDTO gender { get; set; }
         /// <summary>
-        /// 是否带眼镜，face_field包含glasses时返回
-        /// </summary>
-        public FaceGlassesDTO glasses { get; set; }
-        /// <summary>
         /// 人种 face_field包含race时返回
         /// </summary>
         public FaceRaceDTO race { get; set; }
@@ -103,20 +99,6 @@ namespace ZYW.DTO
         public string type { get; set; }
         /// <summary>
         /// 人种置信度，范围【0~1】，0代表概率最小、1代表最大。
-        /// </summary>
-        public double probability { get; set; }
-    }
-    /// <summary>
-    /// 是否带眼镜，face_field包含glasses时返回
-    /// </summary>
-    public class FaceGlassesDTO
-    {
-        /// <summary>
-        /// none:无眼镜，common:普通眼镜，sun:墨镜
-        /// </summary>
-        public string type { get; set; }
-        /// <summary>
-        /// 眼镜置信度，范围【0~1】，0代表概率最小、1代表最大。
         /// </summary>
         public double probability { get; set; }
     }
