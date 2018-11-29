@@ -4,35 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZYW.DTO
+namespace ZYW.Services.Entities
 {
     /// <summary>
-    /// 人脸检测返回数据
+    /// 人脸的信息
     /// </summary>
-    public class ResultFaceDTO
+    public class FaceEntity:BaseEntity
     {
         /// <summary>
         /// 检测到的图片中的人脸数量
         /// </summary>
         public int face_num { get; set; }
         /// <summary>
-        /// 人脸信息列表
-        /// </summary>
-        public List<FaceDTO> face_list { get; set; }
-    }
-    /// <summary>
-    /// 人脸信息
-    /// </summary>
-    public class FaceDTO
-    {
-        /// <summary>
-        /// 人脸图片的唯一标识
-        /// </summary>
-        public string face_token { get; set; }
-        /// <summary>
         /// 人脸在图片中的位置
         /// </summary>
-        public FaceLocationDTO location { get; set; }
+        public FaceLocation location { get; set; }
         /// <summary>
         /// 人脸置信度，范围【0~1】，代表这是一张人脸的概率，0最小、1最大。
         /// </summary>
@@ -40,7 +26,7 @@ namespace ZYW.DTO
         /// <summary>
         /// 人脸旋转角度参数
         /// </summary>
-        public FaceAngelDTO angel { get; set; }
+        public FaceAngel angel { get; set; }
         /// <summary>
         /// 年龄 ，当face_field包含age时返回
         /// </summary>
@@ -50,21 +36,9 @@ namespace ZYW.DTO
         /// </summary>
         public Int64 beauty { get; set; }
         /// <summary>
-        /// 脸型，当face_field包含faceshape时返回
+        /// 各种类型及其置信度
         /// </summary>
-        public FaceShapeDTO face_shape { get; set; }
-        /// <summary>
-        /// 性别，face_field包含gender时返回
-        /// </summary>
-        public FaceGenderDTO gender { get; set; }
-        /// <summary>
-        /// 人种 face_field包含race时返回
-        /// </summary>
-        public FaceRaceDTO race { get; set; }
-        /// <summary>
-        /// 真实人脸/卡通人脸 face_field包含face_type时返回
-        /// </summary>
-        public FaceTypeDTO face_type { get; set; }
+        public FaceTypeProbability typeProbability { get; set; }
         /// <summary>
         /// 4个关键点位置，左眼中心、右眼中心、鼻尖、嘴中心。face_field包含landmark时返回
         /// </summary>
@@ -75,63 +49,38 @@ namespace ZYW.DTO
         /// </summary>
         public string landmark72 { get; set; }
     }
-
-    public class FaceTypeDTO
-    {
-        /// <summary>
-        /// human: 真实人脸 cartoon: 卡通人脸
-        /// </summary>
-        public string type { get; set; }
-        /// <summary>
-        /// 人脸类型判断正确的置信度，范围【0~1】，0代表概率最小、1代表最大。
-        /// </summary>
-        public double probability { get; set; }
-    }
-    public class FaceRaceDTO
-    {
-        /// <summary>
-        /// yellow: 黄种人 white: 白种人 black:黑种人 arabs: 阿拉伯人
-        /// </summary>
-        public string type { get; set; }
-        /// <summary>
-        /// 人种置信度，范围【0~1】，0代表概率最小、1代表最大。
-        /// </summary>
-        public double probability { get; set; }
-    }
     /// <summary>
-    /// 性别，face_field包含gender时返回
+    /// 人脸的各种类型及其置信度
     /// </summary>
-    public class FaceGenderDTO
+    public class FaceTypeProbability:BaseEntity
     {
         /// <summary>
-        /// male:男性 female:女性
+        /// 人脸图片的唯一标识
         /// </summary>
-        public string type { get; set; }
+        public string face_token { get; set; }
         /// <summary>
-        /// 性别置信度，范围【0~1】，0代表概率最小、1代表最大。
-        /// </summary>
-        public double probability { get; set; }
-    }
-
-    /// <summary>
-    /// 脸型，当face_field包含faceshape时返回
-    /// </summary>
-    public class FaceShapeDTO
-    {
-        /// <summary>
-        /// square: 正方形 triangle:三角形 oval: 椭圆 heart: 心形 round: 圆形
+        /// 某个类型下的某个类型
         /// </summary>
         public double type { get; set; }
         /// <summary>
-        /// 置信度，范围【0~1】，代表这是人脸形状判断正确的概率，0最小、1最大。
+        /// 置信度，范围【0~1】，代表这是某个类型下的某个类型的判断正确的概率，0最小、1最大。
         /// </summary>
         public double probability { get; set; }
+        /// <summary>
+        /// 某个类型
+        /// </summary>
+        public string typeClass { get; set; }
     }
+
     /// <summary>
     /// 人脸旋转角度参数
     /// </summary>
-    public class FaceAngelDTO
+    public class FaceAngel : BaseEntity
     {
+        /// <summary>
+        /// 人脸图片的唯一标识
+        /// </summary>
+        public string face_token { get; set; }
         /// <summary>
         /// 三维旋转之左右旋转角[-90(左), 90(右)]
         /// </summary>
@@ -145,12 +94,15 @@ namespace ZYW.DTO
         /// </summary>
         public double roll { get; set; }
     }
-
     /// <summary>
     /// 人脸在图片中的位置
     /// </summary>
-    public class FaceLocationDTO
+    public class FaceLocation : BaseEntity
     {
+        /// <summary>
+        /// 人脸图片的唯一标识
+        /// </summary>
+        public string face_token { get; set; }
         /// <summary>
         /// 人脸区域离左边界的距离
         /// </summary>
