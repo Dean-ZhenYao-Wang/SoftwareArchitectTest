@@ -1,5 +1,4 @@
-﻿using Aliyun.OSS;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +27,7 @@ namespace ZYW.Services
                         if (face == null)
                         {
                             face = new Baidu.Aip.Face.Face(API_KEY, SECRET_KEY);
+                            face.Timeout = 60000;  // 修改超时时间
                         }
                     }
                 }

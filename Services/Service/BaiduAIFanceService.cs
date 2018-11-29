@@ -1,13 +1,14 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
+using ZYW.IServices;
 
-namespace ZYW.IServices
+namespace ZYW.Services.Service
 {
-    public interface IBaiduAIFanceService : IServiceSupport
+    public class BaiduAIFanceService : IBaiduAIFanceService
     {
         /// <summary>
         /// 人脸检测 
@@ -29,6 +30,9 @@ namespace ZYW.IServices
         /// CERT表示证件照片：如拍摄的身份证、工卡、护照、学生证等证件图片 
         /// 默认LIVE</param>
         /// <returns>图片访问地址</returns>
-        string Detect(string image, string imagetype, string face_field="",string max_face_num="1",string face_type="");
+        public string Detect(string image, string imagetype, string face_field = "", string max_face_num = "1", string face_type = "")
+        {
+            throw new NotImplementedException();
+        }
     }
 }
