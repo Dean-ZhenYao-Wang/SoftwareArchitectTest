@@ -10,9 +10,9 @@ namespace ZYW.Services
     {
         private static Baidu.Aip.Face.Face face;
         private static object locker = new object();
-        const string APP_ID = "";
-        const string API_KEY = "";
-        const string SECRET_KEY = " ";
+        const string APP_ID = "11038206";
+        const string API_KEY = "eWHHExU8qB2VWTtGKO9WlfuA";
+        const string SECRET_KEY = "Lt9tCouI2OOgoCl57NwGNadtfKLzmwRI ";
 
 
         private BaiduAIClient() { }
