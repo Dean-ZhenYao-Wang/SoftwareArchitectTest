@@ -60,8 +60,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AliOssClient.cs" />
-    <Compile Include="BaiduAIClient.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\CreditCardEntity.cs" />
     <Compile Include="Entities\EventExecutionErrorLogEntity.cs" />
