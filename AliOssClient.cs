@@ -12,9 +12,9 @@ namespace ZYW.Services
         private static OssClient ossClient;
         private static Aliyun.OSS.Common.ClientConfiguration clientConfiguration;
         private static object locker = new object();
-        const string accessKeyId = "LTAIQ0fFnaRmVgwa";
-        const string accessKeySecret = "8Jgre3av37QThyw4K5xgrzcPRnQuKi";
-        public const string endpoint = "http://nizhenchou.oss-cn-shanghai.aliyuncs.com";
+        const string accessKeyId = "";
+        const string accessKeySecret = "";
+        public const string endpoint = "";
 
         private AliOssClient() { }
         public static OssClient GetAliOssClient
